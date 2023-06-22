@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora</title>
+  <!-- Agrega los enlaces a Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora</h2>
+    <form id="calculatorForm">
+      <div class="input-field">
+        <input type="number" id="num1" required>
+        <label for="num1">Actual</label>
+      </div>
+      <div class="input-field">
+        <input type="number" id="num2" required>
+        <label for="num2">Anterior</label>
+      </div>
+      <p>
+        <label>
+          <input name="operation" type="radio" value="columna" checked />
+          <span>Columna</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="operation" type="radio" value="total" />
+          <span>Total</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="operation" type="radio" value="cuello" />
+          <span>Cuello</span>
+        </label>
+      </p>
+      <button class="btn waves-effect waves-light" type="submit">Calcular</button>
+    </form>
+    <div id="diferencia"></div>
+    <div id="porcentaje"></div>
+  </div>
+
+  <!-- Agrega los enlaces a Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Espera a que el documento esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicializa los estilos de Materialize
+      M.AutoInit();
+
+      // Agrega un evento para el formulario
+      document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
+
+        // Obtiene los valores de los campos y la operación seleccionada
+        var num1 = parseFloat(document.getElementById('num1').value);
+        var num2 = parseFloat(document.getElementById('num2').value);
+        var operation = document.querySelector('input[name="operation"]:checked').value;
+
+        const FColumna = 0.163;
+        const FTotal = 0.172;
+        const FCuello = 0.147;
+
+        // Realiza la operación correspondiente
+        var diferencia;
+        var porcentaje;
+        if (operation === 'columna') {
+          diferencia = (num2 - FColumna)-num1;
+          porcentaje = (diferencia / (num2 - FColumna))*100;
+        } else if (operation === 'total') {
+          diferencia = (num2 - FTotal)-num1;
+          porcentaje = (diferencia / (num2 - FTotal))*100;
+        } else if (operation === 'cuello') {
+          diferencia = (num2 - FCuello)-num1;
+          porcentaje = (diferencia / (num2 - FTotal))*100; 
+        }
+
+        // Muestra el resultado
+        document.getElementById('result').textContent = 'La diferencia es: ' + diferencia;
+        document.getElementById('result').textContent = 'El porcentaje es: ' + porcentaje;
+      });
+    });
+  </script>
+</body>
+</html>
