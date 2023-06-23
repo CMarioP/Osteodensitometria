@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Calculadora</title>
-  <!-- Agrega los enlaces a Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Import Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <title>Calculadora de DMO</title>
+        <style>
+          .container {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 100px;
+          }
+        </style>
+      </head>
 <body>
   <div class="container">
-    <h2>Calculadora</h2>
+    <h2>Calculadora de DMO</h2>
     <form id="calculatorForm">
       <div class="input-field">
-        <input type="number" id="num1" required>
-        <label for="num1">Actual</label>
+        <input type="number" id="num1" step="any" required>
+        <label for="num1">DMO Actual (HOLOGIC)</label>
       </div>
       <div class="input-field">
-        <input type="number" id="num2" required>
-        <label for="num2">Anterior</label>
+        <input type="number" id="num2" step="any" required>
+        <label for="num2">DMO Previo</label>
       </div>
       <p>
         <label>
@@ -73,12 +82,12 @@
           porcentaje = (diferencia / (num2 - FTotal))*100;
         } else if (operation === 'cuello') {
           diferencia = (num2 - FCuello)-num1;
-          porcentaje = (diferencia / (num2 - FTotal))*100; 
+          porcentaje = (diferencia / (num2 - FCuello))*100; 
         }
 
         // Muestra el resultado
-        document.getElementById('result').textContent = 'La diferencia es: ' + diferencia;
-        document.getElementById('result').textContent = 'El porcentaje es: ' + porcentaje;
+        document.getElementById('diferencia').textContent = 'La diferencia es: ' + diferencia.toFixed(4);
+        document.getElementById('porcentaje').textContent = 'El porcentaje es: ' + porcentaje.toFixed(2);
       });
     });
   </script>
