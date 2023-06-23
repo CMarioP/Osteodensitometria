@@ -75,13 +75,13 @@
         var diferencia;
         var porcentaje;
         if (operation === 'columna') {
-          diferencia = (num2 - FColumna)-num1;
+          diferencia = num1-(num2 - FColumna);
           porcentaje = (diferencia / (num2 - FColumna))*100;
         } else if (operation === 'total') {
-          diferencia = (num2 - FTotal)-num1;
+          diferencia = num1-(num2 - FTotal);
           porcentaje = (diferencia / (num2 - FTotal))*100;
         } else if (operation === 'cuello') {
-          diferencia = (num2 - FCuello)-num1;
+          diferencia = num1-(num2 - FCuello);
           porcentaje = (diferencia / (num2 - FCuello))*100; 
         }
 
