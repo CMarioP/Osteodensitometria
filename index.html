@@ -67,22 +67,25 @@
         var num2 = parseFloat(document.getElementById('num2').value);
         var operation = document.querySelector('input[name="operation"]:checked').value;
 
-        const FColumna = 0.163;
-        const FTotal = 0.172;
-        const FCuello = 0.147;
+        const mColumna = 0.82361;
+        const bColumna = 0.032746;
+        const mTotal = 0.87083;
+        const bTotal = 0.075549;
+        const mCuello = 0.88814;
+        const bCuello = -0.062364;
 
         // Realiza la operación correspondiente
         var diferencia;
         var porcentaje;
         if (operation === 'columna') {
-          diferencia = num1-(num2 - FColumna);
-          porcentaje = (diferencia / (num2 - FColumna))*100;
+          diferencia = num1 - (num2 * mColumna + bColumna);
+          porcentaje = (diferencia / (num2 * mColumna + bColumna))*100;
         } else if (operation === 'total') {
-          diferencia = num1-(num2 - FTotal);
-          porcentaje = (diferencia / (num2 - FTotal))*100;
+          diferencia = num1-(num2 * mTotal + bTotal);
+          porcentaje = (diferencia / (num2 * mTotal + bTotal))*100;
         } else if (operation === 'cuello') {
-          diferencia = num1-(num2 - FCuello);
-          porcentaje = (diferencia / (num2 - FCuello))*100; 
+          diferencia = num1-(num2 * mCuello + bCuello);
+          porcentaje = (diferencia / (num2 * mCuello + bCuello))*100; 
         }
 
         // Muestra el resultado
